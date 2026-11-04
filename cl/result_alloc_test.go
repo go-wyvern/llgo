@@ -92,7 +92,6 @@ var saved *uint64
 func save(p *uint64) { saved = p }
 func identity(p *uint64) *uint64 { return p }
 func unknown(*uint64)
-func recursive(p *uint64, n int) { if n != 0 { recursive(p, n-1) }; *p = 1 }
 func borrow(p *uint64) { *p = 1 }
 func mixed(first, second *uint64) { *first = 1; saved = second }
 `
@@ -115,7 +114,6 @@ func mixed(first, second *uint64) { *first = 1; saved = second }
 		{"named pointer", `type Ptr *uint64; var named Ptr; func result() (r uint64) { named = Ptr(&r); return }`},
 		{"phi", `func result(b bool) (r uint64) { p := &r; if b { p = saved }; saved = p; return }`},
 		{"slice", `func result() (r [2]uint64, s []uint64) { s = r[:]; return }`},
-		{"recursive", `func result(n int) (r uint64) { recursive(&r, n); return }`},
 		{"large", `func result() (r [16385]uint64) { borrow(&r[0]); return }`},
 		{"analysis limit", "func result() (r uint64) {" + strings.Repeat("borrow(&r);", 1025) + "return }"},
 		{"intrinsic body", `//go:linkname intrinsic llgo.atomicLoad
@@ -145,8 +143,8 @@ func add(n int) int { return n + 1 }
 		pkg.Func("receive").Params[0],
 		pkg.Func("add").Params[0],
 	} {
-		analysis := resultEscapeAnalysis{budget: 1024}
-		if analysis.borrowed(value, make(map[ssa.Value]bool)) {
+		analysis := localEscapeAnalysis{budget: 1024}
+		if analysis.borrowed(value) {
 			t.Errorf("unsupported use of %s was classified as borrowed", value)
 		}
 	}

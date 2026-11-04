@@ -1,0 +1,378 @@
+{
+  "date": "2026-11-04",
+  "platform": "darwin/arm64 macOS 26.4.1",
+  "go_version": "go1.27.1",
+  "base_commit": "792862ec0b7cce2082a1211aa3525024f8023c2d",
+  "branch": "escape-local-alloc",
+  "sb2xbp_commit": "24ba44e4583dd25f4fb330291ed06405d8b69f44",
+  "original_source": "/Users/wuxinyi/go/src/github.com/goplus/sb2xbp",
+  "benchmark_source": "/private/tmp/llgo-escape-validation/sb2xbp",
+  "user_changes_included": [
+    "convert/_test/run.sh",
+    "xbpio/xbpio_test.go"
+  ],
+  "instrumentation": "convert/noscan_metrics_test.go (same TestMain in both builds)",
+  "build_commands": [
+    "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-go-cache LLGO_BUILD_CACHE=off LLGO_ROOT=/private/tmp/llgo-noscan-validation/main-root /private/tmp/llgo-noscan-validation/llgo-main test -c -o /private/tmp/llgo-escape-validation/sb2xbp-main.test ./convert",
+    "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-go-cache LLGO_BUILD_CACHE=off LLGO_ROOT=/Users/wuxinyi/go/src/github.com/goplus/llgo /private/tmp/llgo-escape-validation/llgo-escape test -c -o /private/tmp/llgo-escape-validation/sb2xbp-escape.test ./convert"
+  ],
+  "method": {
+    "full": "3 rounds per variant, sequential and alternating, empty GOCACHE per invocation, LLGO_BUILD_CACHE=off, -p=1 -count=1 ./...",
+    "runtime": "1 discarded warmup per variant, 7 interleaved rounds per variant, separate processes with -test.count=1",
+    "os_cache": "warm; OS file and module download caches were not flushed",
+    "timer": "Python perf_counter and os.wait4 (Darwin ru_maxrss in bytes)",
+    "gc_ms": "BDWGC GC_get_full_gc_total_time; not Go PauseTotalNs; not additive to wall time",
+    "alloc_probe": "separate runs interposing GC_malloc/GC_malloc_atomic; timings excluded"
+  },
+  "runtime_samples": [
+    {
+      "variant": "main",
+      "seconds": 7.564529000082985,
+      "exit_code": 0,
+      "user_seconds": 10.85382,
+      "system_seconds": 1.968019,
+      "peak_rss_bytes": 482426880,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-1-main.log",
+      "alloc_bytes": 8019977426,
+      "num_gc": 95,
+      "gc_ms": 5305,
+      "round": 1
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.399158375104889,
+      "exit_code": 0,
+      "user_seconds": 10.315593,
+      "system_seconds": 1.975457,
+      "peak_rss_bytes": 482394112,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-1-escape.log",
+      "alloc_bytes": 7517420210,
+      "num_gc": 86,
+      "gc_ms": 4873,
+      "round": 1
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.401720332913101,
+      "exit_code": 0,
+      "user_seconds": 10.677671,
+      "system_seconds": 2.087526,
+      "peak_rss_bytes": 618545152,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-2-escape.log",
+      "alloc_bytes": 7518666866,
+      "num_gc": 82,
+      "gc_ms": 5278,
+      "round": 2
+    },
+    {
+      "variant": "main",
+      "seconds": 7.577906874939799,
+      "exit_code": 0,
+      "user_seconds": 10.854877,
+      "system_seconds": 2.146169,
+      "peak_rss_bytes": 482672640,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-2-main.log",
+      "alloc_bytes": 8019553538,
+      "num_gc": 95,
+      "gc_ms": 5334,
+      "round": 2
+    },
+    {
+      "variant": "main",
+      "seconds": 7.537769749993458,
+      "exit_code": 0,
+      "user_seconds": 10.757236,
+      "system_seconds": 2.113729,
+      "peak_rss_bytes": 482689024,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-3-main.log",
+      "alloc_bytes": 8019356722,
+      "num_gc": 94,
+      "gc_ms": 5229,
+      "round": 3
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.327606666833162,
+      "exit_code": 0,
+      "user_seconds": 9.899226,
+      "system_seconds": 2.112125,
+      "peak_rss_bytes": 483213312,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-3-escape.log",
+      "alloc_bytes": 7517684850,
+      "num_gc": 79,
+      "gc_ms": 4467,
+      "round": 3
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.2699627911206335,
+      "exit_code": 0,
+      "user_seconds": 9.916824,
+      "system_seconds": 2.054563,
+      "peak_rss_bytes": 482967552,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-4-escape.log",
+      "alloc_bytes": 7517720610,
+      "num_gc": 80,
+      "gc_ms": 4545,
+      "round": 4
+    },
+    {
+      "variant": "main",
+      "seconds": 7.578594624996185,
+      "exit_code": 0,
+      "user_seconds": 10.828784,
+      "system_seconds": 2.001456,
+      "peak_rss_bytes": 482738176,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-4-main.log",
+      "alloc_bytes": 8020266786,
+      "num_gc": 95,
+      "gc_ms": 5297,
+      "round": 4
+    },
+    {
+      "variant": "main",
+      "seconds": 7.61099825007841,
+      "exit_code": 0,
+      "user_seconds": 10.800039,
+      "system_seconds": 2.090194,
+      "peak_rss_bytes": 483852288,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-5-main.log",
+      "alloc_bytes": 8019898402,
+      "num_gc": 95,
+      "gc_ms": 5214,
+      "round": 5
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.2577208750881255,
+      "exit_code": 0,
+      "user_seconds": 9.894332,
+      "system_seconds": 2.070634,
+      "peak_rss_bytes": 483180544,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-5-escape.log",
+      "alloc_bytes": 7517131346,
+      "num_gc": 80,
+      "gc_ms": 4540,
+      "round": 5
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.33226600009948,
+      "exit_code": 0,
+      "user_seconds": 10.405593,
+      "system_seconds": 2.074852,
+      "peak_rss_bytes": 617398272,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-6-escape.log",
+      "alloc_bytes": 7519161330,
+      "num_gc": 75,
+      "gc_ms": 5025,
+      "round": 6
+    },
+    {
+      "variant": "main",
+      "seconds": 7.604568250011653,
+      "exit_code": 0,
+      "user_seconds": 10.881693,
+      "system_seconds": 1.989123,
+      "peak_rss_bytes": 482492416,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-6-main.log",
+      "alloc_bytes": 8020190018,
+      "num_gc": 96,
+      "gc_ms": 5316,
+      "round": 6
+    },
+    {
+      "variant": "main",
+      "seconds": 7.627215333050117,
+      "exit_code": 0,
+      "user_seconds": 11.138917,
+      "system_seconds": 2.133202,
+      "peak_rss_bytes": 614662144,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-main.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-7-main.log",
+      "alloc_bytes": 8020357442,
+      "num_gc": 88,
+      "gc_ms": 5550,
+      "round": 7
+    },
+    {
+      "variant": "escape",
+      "seconds": 7.324335166951641,
+      "exit_code": 0,
+      "user_seconds": 10.016333,
+      "system_seconds": 2.107424,
+      "peak_rss_bytes": 482590720,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && LLGO_ROOT=/Users/wuxinyi/.llgo/current /private/tmp/llgo-escape-validation/sb2xbp-escape.test '-test.run=^TestAllProjects$' -test.count=1 -test.timeout=10m",
+      "log": "/private/tmp/llgo-escape-validation/runtime-7-escape.log",
+      "alloc_bytes": 7517971602,
+      "num_gc": 80,
+      "gc_ms": 4600,
+      "round": 7
+    }
+  ],
+  "full_samples": [
+    {
+      "variant": "main",
+      "seconds": 80.275534250075,
+      "exit_code": 0,
+      "user_seconds": 96.940341,
+      "system_seconds": 10.16971,
+      "peak_rss_bytes": 2274492416,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-1-main-vcg_a8l8 LLGO_BUILD_CACHE=off LLGO_ROOT=/private/tmp/llgo-noscan-validation/main-root /private/tmp/llgo-noscan-validation/llgo-main test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-1-main.log",
+      "package_test_seconds": 26.641000000000002,
+      "non_test_seconds": 53.63453425007499,
+      "round": 1
+    },
+    {
+      "variant": "escape",
+      "seconds": 75.86903308378533,
+      "exit_code": 0,
+      "user_seconds": 96.007448,
+      "system_seconds": 10.093293,
+      "peak_rss_bytes": 2400452608,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-1-escape-3scieucj LLGO_BUILD_CACHE=off LLGO_ROOT=/Users/wuxinyi/go/src/github.com/goplus/llgo /private/tmp/llgo-escape-validation/llgo-escape test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-1-escape.log",
+      "package_test_seconds": 22.23,
+      "non_test_seconds": 53.63903308378532,
+      "round": 1
+    },
+    {
+      "variant": "escape",
+      "seconds": 75.71322375000454,
+      "exit_code": 0,
+      "user_seconds": 96.617506,
+      "system_seconds": 10.153282,
+      "peak_rss_bytes": 2285846528,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-2-escape-gztvj000 LLGO_BUILD_CACHE=off LLGO_ROOT=/Users/wuxinyi/go/src/github.com/goplus/llgo /private/tmp/llgo-escape-validation/llgo-escape test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-2-escape.log",
+      "package_test_seconds": 22.122999999999998,
+      "non_test_seconds": 53.59022375000455,
+      "round": 2
+    },
+    {
+      "variant": "main",
+      "seconds": 75.97147754114121,
+      "exit_code": 0,
+      "user_seconds": 97.033848,
+      "system_seconds": 10.017323,
+      "peak_rss_bytes": 2218835968,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-2-main-xlm3xclv LLGO_BUILD_CACHE=off LLGO_ROOT=/private/tmp/llgo-noscan-validation/main-root /private/tmp/llgo-noscan-validation/llgo-main test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-2-main.log",
+      "package_test_seconds": 22.346999999999998,
+      "non_test_seconds": 53.62447754114122,
+      "round": 2
+    },
+    {
+      "variant": "main",
+      "seconds": 76.75680916686542,
+      "exit_code": 0,
+      "user_seconds": 96.820941,
+      "system_seconds": 10.254741,
+      "peak_rss_bytes": 2300166144,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-3-main-d5lp8y2c LLGO_BUILD_CACHE=off LLGO_ROOT=/private/tmp/llgo-noscan-validation/main-root /private/tmp/llgo-noscan-validation/llgo-main test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-3-main.log",
+      "package_test_seconds": 22.814999999999998,
+      "non_test_seconds": 53.941809166865426,
+      "round": 3
+    },
+    {
+      "variant": "escape",
+      "seconds": 77.52633087499999,
+      "exit_code": 0,
+      "user_seconds": 96.754295,
+      "system_seconds": 10.147185,
+      "peak_rss_bytes": 2260942848,
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp && GOFLAGS=' ' GOCACHE=/private/tmp/llgo-escape-validation/cache-3-escape-vb3xxm3v LLGO_BUILD_CACHE=off LLGO_ROOT=/Users/wuxinyi/go/src/github.com/goplus/llgo /private/tmp/llgo-escape-validation/llgo-escape test -p=1 -count=1 ./...",
+      "log": "/private/tmp/llgo-escape-validation/full-3-escape.log",
+      "package_test_seconds": 23.303,
+      "non_test_seconds": 54.22333087499999,
+      "round": 3
+    }
+  ],
+  "metrics_test_main": "package convert\n\nimport (\n    \"fmt\"\n    \"os\"\n    \"runtime\"\n    \"testing\"\n    _ \"unsafe\"\n)\n\n//go:linkname startGCMeasurement C.GC_start_performance_measurement\nfunc startGCMeasurement()\n\n//go:linkname fullGCTime C.GC_get_full_gc_total_time\nfunc fullGCTime() uintptr\n\nfunc TestMain(m *testing.M) {\n    var before, after runtime.MemStats\n    startGCMeasurement()\n    runtime.ReadMemStats(&before)\n    code := m.Run()\n    runtime.ReadMemStats(&after)\n    fmt.Printf(\"NOSCAN_METRICS alloc_bytes=%d num_gc=%d gc_ms=%d\\n\", after.TotalAlloc-before.TotalAlloc, after.NumGC-before.NumGC, fullGCTime())\n    os.Exit(code)\n}\n",
+  "allocation_probe": {
+    "main": {
+      "scanned": {
+        "calls": 181523726,
+        "requested_bytes": 5723425693,
+        "small_calls": 179439827,
+        "small_requested_bytes": 3957794396
+      },
+      "atomic": {
+        "calls": 0,
+        "requested_bytes": 0,
+        "small_calls": 0,
+        "small_requested_bytes": 0
+      },
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && DYLD_INSERT_LIBRARIES=/private/tmp/llgo-noscan-validation/diagnosis/alloc_probe.dylib /private/tmp/llgo-escape-validation/sb2xbp-main.test -test.run=^TestAllProjects$ -test.count=1 -test.timeout=10m"
+    },
+    "escape": {
+      "scanned": {
+        "calls": 163143625,
+        "requested_bytes": 5449539145,
+        "small_calls": 161059633,
+        "small_requested_bytes": 3683899832
+      },
+      "atomic": {
+        "calls": 0,
+        "requested_bytes": 0,
+        "small_calls": 0,
+        "small_requested_bytes": 0
+      },
+      "command": "cd /private/tmp/llgo-escape-validation/sb2xbp/convert && DYLD_INSERT_LIBRARIES=/private/tmp/llgo-noscan-validation/diagnosis/alloc_probe.dylib /private/tmp/llgo-escape-validation/sb2xbp-escape.test -test.run=^TestAllProjects$ -test.count=1 -test.timeout=10m"
+    }
+  },
+  "medians": {
+    "runtime": {
+      "main": {
+        "seconds": 7.578594624996185,
+        "user_seconds": 10.85382,
+        "system_seconds": 2.090194,
+        "peak_rss_bytes": 482689024,
+        "alloc_bytes": 8019977426,
+        "num_gc": 95,
+        "gc_ms": 5305
+      },
+      "escape": {
+        "seconds": 7.327606666833162,
+        "user_seconds": 10.016333,
+        "system_seconds": 2.074852,
+        "peak_rss_bytes": 483180544,
+        "alloc_bytes": 7517720610,
+        "num_gc": 80,
+        "gc_ms": 4600
+      }
+    },
+    "full": {
+      "main": {
+        "seconds": 76.75680916686542,
+        "user_seconds": 96.940341,
+        "system_seconds": 10.16971,
+        "peak_rss_bytes": 2274492416,
+        "package_test_seconds": 22.814999999999998,
+        "non_test_seconds": 53.63453425007499
+      },
+      "escape": {
+        "seconds": 75.86903308378533,
+        "user_seconds": 96.617506,
+        "system_seconds": 10.147185,
+        "peak_rss_bytes": 2285846528,
+        "package_test_seconds": 22.23,
+        "non_test_seconds": 53.63903308378532
+      }
+    }
+  }
+}
